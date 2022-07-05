@@ -1,9 +1,19 @@
 import * as React from "react"
+import { useRef } from 'react'
+import NavBar from "./NavBar"
+import About from "./About"
+import Projects from "./Projects"
+import Blog from "./Blog"
+import Skills from "./Skills"
+import Contact from "./Contact"
+import './index.css'
+import Sidebar from "./Sidebar"
+import { blogPosts } from "./variables"
 
 // styles
 const pageStyles = {
   color: "#232129",
-  padding: 96,
+  // padding: 96,
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
 const headingStyles = {
@@ -127,13 +137,48 @@ const links = [
 
 // markup
 const IndexPage = () => {
+
+  const aboutRef = useRef()
+  const projectRef = useRef()
+  const blogRef = useRef()
+  const skillRef = useRef()
+  const contactRef = useRef()
+
   return (
-    <main style={pageStyles}>
-      <title>Home Page</title>
-      <h1 style={headingStyles}>
+    <main >
+      <title>Christopher Ninman</title>
+      <NavBar 
+        aboutRef={aboutRef}
+        projectRef={projectRef}
+        blogRef={blogRef}
+        skillRef={skillRef}
+        contactRef={contactRef}
+      />
+      <Sidebar         
+        aboutRef={aboutRef}
+        projectRef={projectRef}
+        blogRef={blogRef}
+        skillRef={skillRef}
+        contactRef={contactRef}
+      />
+      <div className='page-style'>
+        <About aboutRef={aboutRef}/>
+        <Projects projectRef={projectRef}/>
+        <Blog blogRef={blogRef}/>
+        <Skills skillRef={skillRef}/>
+        <Contact contactRef={contactRef}/>
+      </div>
+    </main>
+  )
+}
+
+export default IndexPage
+
+
+{/* <h1 style={headingStyles}>
         Congratulations
         <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! </span>
+        <span style={headingAccentStyles}>— you have found Christopher Ninman's portfolio! </span>
         <span role="img" aria-label="Party popper emojis">
           🎉🎉🎉
         </span>
@@ -176,9 +221,4 @@ const IndexPage = () => {
       <img
         alt="Gatsby G Logo"
         src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
-  )
-}
-
-export default IndexPage
+      /> */}
